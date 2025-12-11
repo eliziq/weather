@@ -16,6 +16,7 @@ const params = {
     'snowfall',
     'cloud_cover',
     'weather_code',
+    "precipitation"
   ],
   timezone: 'auto',
 };
@@ -46,6 +47,12 @@ export const getWeatherData = async () => {
   const current = response.current()!;
   const hourly = response.hourly()!;
 
+  const start = Number(hourly.time());
+  const end = Number(hourly.timeEnd());
+  const interval = hourly.interval();
+
+  const hours = Math.round((end - start) / interval);
+
   // Note: The order of weather variables in the URL query and the indices below need to match!
   const weatherData = {
     current: {
@@ -61,12 +68,10 @@ export const getWeatherData = async () => {
       snowfall: current.variables(8)!.value(),
       cloud_cover: current.variables(9)!.value(),
       weather_code: current.variables(10)!.value(),
+      precipitation: current.variables(11)!.value(),
     },
     hourly: {
-      time: Array.from(
-        { length: (Number(hourly.timeEnd()) - Number(hourly.time())) / hourly.interval() },
-        (_, i) => new Date((Number(hourly.time()) + i * hourly.interval() + utcOffsetSeconds) * 1000)
-      ),
+      time: Array.from({ length: hours + 1 }, (_, i) => new Date((start + i * interval + utcOffsetSeconds) * 1000)),
       temperature_2m: hourly.variables(0)!.valuesArray(),
     },
     timezone,
@@ -85,7 +90,8 @@ export const getWeatherData = async () => {
     `\nCurrent showers: ${weatherData.current.showers}`,
     `\nCurrent snowfall: ${weatherData.current.snowfall}`,
     `\nCurrent cloud_cover: ${weatherData.current.cloud_cover}`,
-	`\nCurrent weather_code: ${weatherData.current.weather_code}`
+    `\nCurrent weather_code: ${weatherData.current.weather_code}`,
+    `\nCurrent precipitation: ${weatherData.current.precipitation}`
   );
   console.log('\nHourly data:\n', weatherData.hourly);
 
