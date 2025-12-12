@@ -2,6 +2,7 @@ import { getWeatherData } from '../../api/weather-api';
 import { useQuery } from '@tanstack/react-query';
 import { getWeatherIcon } from '../../utils/getWeatherIcon';
 import { CurrentDetails } from '../CurrentDetails';
+
 import './current-weather.css';
 
 export const CurrrentWeather = () => {

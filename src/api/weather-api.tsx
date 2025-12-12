@@ -3,6 +3,7 @@ import { fetchWeatherApi } from 'openmeteo';
 const params = {
   latitude: 50.4547,
   longitude: 30.5238,
+  daily: ['weather_code', 'temperature_2m_max', 'temperature_2m_min'],
   hourly: 'temperature_2m',
   current: [
     'temperature_2m',
@@ -16,7 +17,7 @@ const params = {
     'snowfall',
     'cloud_cover',
     'weather_code',
-    "precipitation"
+    'precipitation',
   ],
   timezone: 'auto',
 };
@@ -46,6 +47,7 @@ export const getWeatherData = async () => {
 
   const current = response.current()!;
   const hourly = response.hourly()!;
+  const daily = response.daily()!;
 
   const start = Number(hourly.time());
   const end = Number(hourly.timeEnd());
@@ -68,11 +70,20 @@ export const getWeatherData = async () => {
       snowfall: current.variables(8)!.value(),
       cloud_cover: current.variables(9)!.value(),
       weather_code: current.variables(10)!.value(),
-      precipitation: current.variables(11)!.value(),
+      precipitation: Math.round(current.variables(11)!.value() * 10) / 10,
     },
     hourly: {
       time: Array.from({ length: hours + 1 }, (_, i) => new Date((start + i * interval + utcOffsetSeconds) * 1000)),
       temperature_2m: hourly.variables(0)!.valuesArray(),
+    },
+    daily: {
+      time: Array.from(
+        { length: (Number(daily.timeEnd()) - Number(daily.time())) / daily.interval() },
+        (_, i) => new Date((Number(daily.time()) + i * daily.interval() + utcOffsetSeconds) * 1000)
+      ),
+      weather_code: daily.variables(0)!.valuesArray(),
+      temperature_2m_max: daily.variables(1)!.valuesArray(),
+      temperature_2m_min: daily.variables(2)!.valuesArray(),
     },
     timezone,
   };
@@ -94,6 +105,7 @@ export const getWeatherData = async () => {
     `\nCurrent precipitation: ${weatherData.current.precipitation}`
   );
   console.log('\nHourly data:\n', weatherData.hourly);
+  console.log('\nDaily data:\n', weatherData.daily);
 
   return weatherData;
 };

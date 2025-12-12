@@ -21,6 +21,12 @@
   display: flex;
 }
 
+.glass-card {
+  background-color: var(--neutral-700);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--neutral-600);
+}
+
 .current-details {
   display: flex;
   flex-direction: column;
@@ -28,8 +34,6 @@
   justify-content: space-between;
   gap: 0.5rem;
   padding: 0.7rem;
-  background-color: var(--neutral-700);
-  border-radius: var(--radius-sm);
 }
 
 .location-info {

@@ -1,7 +1,7 @@
 import './App.css';
 
 import { CurrrentWeather } from './components/CurrentWeather/CurrentWeather';
-import { DailyForecast } from './components/DailyForecast';
+import { DailyForecast } from './components/DailyForecast/DailyForecast';
 import { Header } from './components/Header';
 import { HourlyForecast } from './components/HourlyForecast';
 import { SearchBar } from './components/SearchBar';
