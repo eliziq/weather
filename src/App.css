@@ -35,9 +35,4 @@ main > h1 {
   background-color: var(--neutral-300);
 }
 
-.hourly-forecast {
-  grid-area: 3/ 2 / 5 / 3;
-  background-color: var(--neutral-300);
 
-  border-radius: var(--radius-md);
-}

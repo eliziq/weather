@@ -4,7 +4,7 @@ const params = {
   latitude: 50.4547,
   longitude: 30.5238,
   daily: ['weather_code', 'temperature_2m_max', 'temperature_2m_min'],
-  hourly: 'temperature_2m',
+  hourly: ['temperature_2m', 'weather_code'],
   current: [
     'temperature_2m',
     'relative_humidity_2m',
@@ -75,6 +75,7 @@ export const getWeatherData = async () => {
     hourly: {
       time: Array.from({ length: hours + 1 }, (_, i) => new Date((start + i * interval + utcOffsetSeconds) * 1000)),
       temperature_2m: hourly.variables(0)!.valuesArray(),
+      weather_code: hourly.variables(1)!.valuesArray(),
     },
     daily: {
       time: Array.from(

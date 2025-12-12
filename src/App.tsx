@@ -3,7 +3,7 @@ import './App.css';
 import { CurrrentWeather } from './components/CurrentWeather/CurrentWeather';
 import { DailyForecast } from './components/DailyForecast/DailyForecast';
 import { Header } from './components/Header';
-import { HourlyForecast } from './components/HourlyForecast';
+import { HourlyForecast } from './components/HourlyForecast/HourlyForecast';
 import { SearchBar } from './components/SearchBar';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
