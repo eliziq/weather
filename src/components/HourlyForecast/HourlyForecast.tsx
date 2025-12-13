@@ -1,31 +1,55 @@
+import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getWeatherData } from '../../api/weather-api';
 import { getWeatherIcon } from '../../utils/getWeatherIcon';
 
 import './hourly-forecast.css';
 
+const WEEK_DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
 export const HourlyForecast = () => {
+  const [dayOffset, setDayOffset] = useState(0);
+
   const query = useQuery({
     queryKey: ['currentWeather'],
     queryFn: getWeatherData,
   });
 
   const hourlyData = query.data?.hourly;
-  const hourlyToday = hourlyData?.time.slice(0, 8); //temporary limit to 8 hours
+
+  if (!hourlyData) {
+    return <div>Loading...</div>;
+  }
+
+  const todayIndex = hourlyData.time[0].getDay();
+
+  const startIndex = dayOffset * 24;
+  const hourlyDay = hourlyData.time.slice(startIndex, startIndex + 24);
+
+  const rotatedDays = WEEK_DAYS.map((_, index) => ({
+    label: WEEK_DAYS[(todayIndex + index) % 7],
+    offset: index,
+  }));
 
   return (
     <div className="hourly-forecast">
-      <h4>Hourly forecast</h4>
+      <div className="hourly-header">
+        <h4>Hourly Forecast </h4>
+        <DaySelect days={rotatedDays} dayOffset={dayOffset} setDayOffset={setDayOffset} />
+      </div>
       <div className="hourly-grid">
-        {hourlyData &&
-          hourlyToday?.map((time, index) => (
+        {hourlyDay.map((time, index) => {
+          const realIndex = startIndex + index;
+
+          return (
             <HourlyCard
-              key={index}
+              key={realIndex}
               date={time}
-              temperature={hourlyData.temperature_2m?.[index]}
-              weatherCode={hourlyData.weather_code?.[index]}
+              temperature={hourlyData.temperature_2m?.[realIndex]}
+              weatherCode={hourlyData.weather_code?.[realIndex]}
             />
-          ))}
+          );
+        })}
       </div>
     </div>
   );
@@ -47,5 +71,23 @@ const HourlyCard = ({ date, temperature, weatherCode }: HourlyCardProps) => {
       </div>
       <h5>{temperature}°</h5>
     </div>
+  );
+};
+
+interface DaySelectProps {
+  days: { label: string; offset: number }[];
+  dayOffset: number;
+  setDayOffset: (v: number) => void;
+}
+
+const DaySelect = ({ days, dayOffset, setDayOffset }: DaySelectProps) => {
+  return (
+    <select value={dayOffset} onChange={(e) => setDayOffset(Number(e.target.value))}>
+      {days.map(({ label, offset }) => (
+        <option key={label} value={offset}>
+          {label}
+        </option>
+      ))}
+    </select>
   );
 };

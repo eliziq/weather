@@ -58,7 +58,7 @@ export const getWeatherData = async () => {
   // Note: The order of weather variables in the URL query and the indices below need to match!
   const weatherData = {
     current: {
-      time: new Date((Number(current.time()) + utcOffsetSeconds) * 1000),
+      time: new Date(Number(current.time()) * 1000),
       temperature_2m: Math.round(current.variables(0)!.value()),
       relative_humidity_2m: Math.round(current.variables(1)!.value()),
       is_day: current.variables(2)!.value(),
@@ -73,14 +73,14 @@ export const getWeatherData = async () => {
       precipitation: Math.round(current.variables(11)!.value() * 10) / 10,
     },
     hourly: {
-      time: Array.from({ length: hours + 1 }, (_, i) => new Date((start + i * interval + utcOffsetSeconds) * 1000)),
+      time: Array.from({ length: hours + 1 }, (_, i) => new Date((start + i * interval) * 1000)),
       temperature_2m: hourly.variables(0)!.valuesArray(),
       weather_code: hourly.variables(1)!.valuesArray(),
     },
     daily: {
       time: Array.from(
         { length: (Number(daily.timeEnd()) - Number(daily.time())) / daily.interval() },
-        (_, i) => new Date((Number(daily.time()) + i * daily.interval() + utcOffsetSeconds) * 1000)
+        (_, i) => new Date((Number(daily.time()) + i * daily.interval()) * 1000)
       ),
       weather_code: daily.variables(0)!.valuesArray(),
       temperature_2m_max: daily.variables(1)!.valuesArray(),
