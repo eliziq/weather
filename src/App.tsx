@@ -1,5 +1,6 @@
 import './App.css';
-
+import { useEffect } from 'react';
+import { getUsersLocation } from './utils/getUsersLocation';
 import { CurrrentWeather } from './components/CurrentWeather/CurrentWeather';
 import { DailyForecast } from './components/DailyForecast/DailyForecast';
 import { Header } from './components/Header/Header';
@@ -10,6 +11,10 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 const queryClient = new QueryClient();
 
 function App() {
+  useEffect(() => {
+    getUsersLocation();
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <Header />

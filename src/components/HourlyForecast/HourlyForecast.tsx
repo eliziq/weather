@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { getWeatherData } from '../../api/weather-api';
 import { getWeatherIcon } from '../../utils/getWeatherIcon';
+import { useWeather } from '../../hooks/useWeather';
 
 import './hourly-forecast.css';
 
@@ -10,12 +9,9 @@ const WEEK_DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frid
 export const HourlyForecast = () => {
   const [dayOffset, setDayOffset] = useState(0);
 
-  const query = useQuery({
-    queryKey: ['currentWeather'],
-    queryFn: getWeatherData,
-  });
+  const { data } = useWeather();
 
-  const hourlyData = query.data?.hourly;
+  const hourlyData = data?.hourly;
 
   if (!hourlyData) {
     return <div>Loading...</div>;

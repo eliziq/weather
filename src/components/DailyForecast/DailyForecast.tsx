@@ -1,16 +1,12 @@
-import { useQuery } from '@tanstack/react-query';
-import { getWeatherData } from '../../api/weather-api';
 import { getWeatherIcon } from '../../utils/getWeatherIcon';
+import { useWeather } from '../../hooks/useWeather';
 
 import './daily-forecast.css';
 
 export const DailyForecast = () => {
-  const query = useQuery({
-    queryKey: ['currentWeather'],
-    queryFn: getWeatherData,
-  });
+   const { data } = useWeather();
 
-  const dailyData = query.data?.daily;
+  const dailyData = data?.daily;
 
   return (
     <div className="daily-forecast">

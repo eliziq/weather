@@ -1,4 +1,5 @@
 import { fetchWeatherApi } from 'openmeteo';
+import type { Location } from '../types/location.types';
 
 const params = {
   latitude: 50.4547,
@@ -24,9 +25,9 @@ const params = {
 
 const url = 'https://api.open-meteo.com/v1/forecast';
 
-export const getWeatherData = async () => {
-  const responses = await fetchWeatherApi(url, params);
-  // Process first location. Add a for-loop for multiple locations or weather models
+export const getWeatherData = async (location: Location) => {
+  const responses = await fetchWeatherApi(url, { ...params, ...location });
+
   const response = responses[0];
 
   const latitude = response.latitude();

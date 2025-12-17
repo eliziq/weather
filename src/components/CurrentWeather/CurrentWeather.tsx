@@ -1,17 +1,13 @@
-import { getWeatherData } from '../../api/weather-api';
-import { useQuery } from '@tanstack/react-query';
 import { getWeatherIcon } from '../../utils/getWeatherIcon';
 import { CurrentDetails } from '../CurrentDetails';
+import { useWeather } from '../../hooks/useWeather';
 
 import './current-weather.css';
 
 export const CurrrentWeather = () => {
-  const query = useQuery({
-    queryKey: ['currentWeather'],
-    queryFn: getWeatherData,
-  });
+  const { data } = useWeather();
 
-  const currentData = query.data?.current;
+  const currentData = data?.current;
 
   return (
     <div className="current-weather">
@@ -19,7 +15,7 @@ export const CurrrentWeather = () => {
         <>
           <div className="temperature-card">
             <div className="location-info">
-              <h3>{query.data?.timezone}</h3>
+              <h3>{data?.timezone}</h3>
               <h5>{currentData.time.toLocaleString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}</h5>
             </div>
             <div className="weather-info">
