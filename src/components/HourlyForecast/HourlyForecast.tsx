@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { getWeatherIcon } from '../../utils/getWeatherIcon';
 import { useWeather } from '../../hooks/useWeather';
+import { Dropdown } from '../shared/Dropdown/Dropdown';
 
 import './hourly-forecast.css';
 
@@ -31,7 +32,7 @@ export const HourlyForecast = () => {
     <div className="hourly-forecast">
       <div className="hourly-header">
         <h4>Hourly Forecast </h4>
-        <DaySelect days={rotatedDays} dayOffset={dayOffset} setDayOffset={setDayOffset} />
+        <DayDropdown days={rotatedDays} dayOffset={dayOffset} setDayOffset={setDayOffset} />
       </div>
       <div className="hourly-grid">
         {hourlyDay.map((time, index) => {
@@ -76,14 +77,15 @@ interface DaySelectProps {
   setDayOffset: (v: number) => void;
 }
 
-const DaySelect = ({ days, dayOffset, setDayOffset }: DaySelectProps) => {
+const DayDropdown = ({ days, dayOffset, setDayOffset }: DaySelectProps) => {
+  const data = days.map(({ label, offset }) => ({ label, id: offset.toString() }));
   return (
-    <select value={dayOffset} onChange={(e) => setDayOffset(Number(e.target.value))}>
-      {days.map(({ label, offset }) => (
-        <option key={label} value={offset}>
-          {label}
-        </option>
-      ))}
-    </select>
+    <Dropdown
+      id="day"
+      title="Day"
+      data={data}
+      selectedId={dayOffset.toString()}
+      onSelect={(id) => setDayOffset(Number(id))}
+    />
   );
 };
