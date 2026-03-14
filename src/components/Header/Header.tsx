@@ -1,5 +1,5 @@
 import logo from '../../assets/images/logo.svg';
-// import { Dropdown } from '../shared/Dropdown/Dropdown';
+import { UnitsDropdown } from '../UnitsDropdown/UnitsDropdown';
 
 import './header.css';
 
@@ -7,7 +7,7 @@ export const Header = () => {
   return (
     <header>
       <img src={logo} alt="Weather App Logo" className="logo" />
-      {/* <Dropdown /> */}
+      <UnitsDropdown />
     </header>
   );
 };

@@ -1,11 +1,15 @@
 import { getWeatherIcon } from '../../utils/getWeatherIcon';
 import { CurrentDetails } from '../CurrentDetails';
 import { useWeather } from '../../hooks/useWeather';
+import useUnitsStore from '../../store/units.store';
 
 import './current-weather.css';
 
 export const CurrrentWeather = () => {
   const { data } = useWeather();
+  const getLabels = useUnitsStore((s) => s.getDisplayUnits);
+
+  const { temp, wind, precip } = getLabels();
 
   const currentData = data?.current;
 
@@ -23,10 +27,10 @@ export const CurrrentWeather = () => {
               <h3 className="current-temp">{currentData.temperature_2m}&deg;</h3>
             </div>
           </div>
-          <CurrentDetails title="Feels like" value={currentData.apparent_temperature + '°'} />
+          <CurrentDetails title="Feels like" value={currentData.apparent_temperature + temp} />
           <CurrentDetails title="Humidity" value={currentData.relative_humidity_2m + '%'} />
-          <CurrentDetails title="Wind" value={currentData.wind_speed_10m + ' km/h'} />
-          <CurrentDetails title="Precipitation" value={currentData.precipitation + ' mm'} />
+          <CurrentDetails title="Wind" value={currentData.wind_speed_10m + wind} />
+          <CurrentDetails title="Precipitation" value={currentData.precipitation + precip} />
         </>
       ) : (
         <p>Loading...</p>

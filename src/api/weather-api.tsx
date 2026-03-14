@@ -1,5 +1,6 @@
 import { fetchWeatherApi } from 'openmeteo';
 import type { Location } from '../types/location.types';
+import type { WeatherUnitParams } from '../types/units.types';
 
 const params = {
   latitude: 50.4547,
@@ -25,8 +26,8 @@ const params = {
 
 const url = 'https://api.open-meteo.com/v1/forecast';
 
-export const getWeatherData = async (location: Location) => {
-  const responses = await fetchWeatherApi(url, { ...params, ...location });
+export const getWeatherData = async (location: Location, unitParams: WeatherUnitParams) => {
+  const responses = await fetchWeatherApi(url, { ...params, ...location, ...unitParams });
 
   const response = responses[0];
 
