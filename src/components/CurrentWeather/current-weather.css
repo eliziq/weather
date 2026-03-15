@@ -17,7 +17,7 @@
   justify-content: space-between;
   align-items: center;
 
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   display: flex;
 }
 

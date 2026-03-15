@@ -1,6 +1,6 @@
 .hourly-forecast {
   grid-area: 3/ 2 / 5 / 3;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   display: flex;
   flex-direction: column;
   background-color: var(--neutral-700);
