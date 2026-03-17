@@ -1,24 +1,29 @@
 .current-weather {
-  grid-area: 3 / 1 / 4 / 2;
+  grid-area: today;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 2fr 1fr;
+  grid-template-areas:
+    'temp temp temp temp'
+    'details details details details';
   row-gap: 2rem;
   column-gap: 1rem;
 }
 
 .temperature-card {
-  grid-area: 1 / 1 / 2 / 5;
-  background-image: url('../../assets/images/bg-today-large.svg');
+  grid-area: temp;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 2rem;
+
+  background-image: url('../../assets/images/bg-today-large.svg');
   background-size: cover;
   background-position: center;
-  justify-content: space-between;
-  align-items: center;
 
   border-radius: var(--radius-lg);
-  display: flex;
 }
 
 .glass-card {
@@ -56,4 +61,22 @@ img.weather-icon {
 h3.current-temp {
   font-size: 5rem;
   font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .current-weather {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto 1fr 1fr;
+    grid-template-areas:
+      'temp temp'
+      'details details'
+      'details details';
+  }
+}
+
+@media (max-width: 412px) {
+  .temperature-card {
+    aspect-ratio: 6/5;
+    flex-direction: column;
+  }
 }

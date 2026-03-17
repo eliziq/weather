@@ -19,13 +19,31 @@ header {
 main {
   padding: 2rem;
   display: grid;
-  grid-template-rows: 15vh 10vh 50vh 25vh;
+  grid-template-rows: 15vh 10vh 50vh minmax(10vh, 180px);
   grid-template-columns: 2fr 1fr;
+  grid-template-areas:
+    'title title'
+    'search search'
+    'today hourly'
+    'daily hourly';
   gap: 2rem;
 }
 
 main > h1 {
-  grid-area: 1 / 1 / 2 / 3;
+  grid-area: title;
   align-self: center;
   justify-self: center;
+}
+
+@media (max-width: 768px) {
+  main {
+    grid-template-rows: auto;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      'title'
+      'search'
+      'today'
+      'daily'
+      'hourly';
+  }
 }

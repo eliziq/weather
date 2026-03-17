@@ -3,6 +3,7 @@ import useOutsideClick from '../../hooks/useOutsideClick';
 import useUnitsStore from '../../store/units.store';
 import { UNIT_SYSTEMS } from '../../types/units.types';
 import icon from '../../assets/images/icon-dropdown.svg';
+import unitsIcon from '../../assets/images/icon-units.svg';
 import './units-dropdown.css';
 
 const unitsData = [
@@ -43,7 +44,8 @@ export const UnitsDropdown = () => {
   return (
     <div ref={dropdownRef} className="dropdown-container ">
       <button onClick={() => setIsOpen(!isOpen)} className="dropdown-button">
-        <span>Units: {currentSystem === UNIT_SYSTEMS.METRIC ? 'Metric' : 'Imperial'}</span>
+        <img className="dropdown-icon" src={unitsIcon} alt="" />
+        <h5>Units</h5>
         <img className="dropdown-icon" src={icon} alt="" />
       </button>
 

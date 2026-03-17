@@ -1,4 +1,6 @@
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -25,11 +27,11 @@
   --radius-lg: 1rem;
   --radius-xl: 1.5rem;
 
-  --font-xs: 1rem;
-  --font-sm: 1.25rem;
-  --font-md: 1.5rem;
-  --font-lg: 2rem;
-  --font-xl: 2.5rem;
+  --font-xs: clamp(0.875rem, 0.5vw + 0.75rem, 2rem);
+  --font-sm: clamp(1rem, 0.8vw + 0.8rem, 2.5rem);
+  --font-md: clamp(1.25rem, 1vw + 1rem, 3rem);
+  --font-lg: clamp(1.5rem, 2vw + 1rem, 4rem);
+  --font-xl: clamp(2rem, 4vw + 1rem, 5rem);
 
   h1,
   h2,

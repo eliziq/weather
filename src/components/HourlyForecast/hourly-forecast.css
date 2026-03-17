@@ -1,5 +1,5 @@
 .hourly-forecast {
-  grid-area: 3/ 2 / 5 / 3;
+  grid-area: hourly;
   border-radius: var(--radius-lg);
   display: flex;
   flex-direction: column;
@@ -52,4 +52,9 @@
 .hourly-forecast img {
   width: 40px;
   height: 40px;
+}
+
+
+@media (max-width: 768px) {
+
 }
