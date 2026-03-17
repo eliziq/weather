@@ -54,3 +54,12 @@
   background-color: var(--neutral-600);
   border-radius: var(--radius-xs);
 }
+
+@media (prefers-color-scheme: light) {
+  .dropdown-button,.dropdown-menu  {
+    border: 1px solid var(--neutral-600);
+  }
+ .dropdown-menu li:hover {
+  background-color: var(--neutral-600);
+}
+}

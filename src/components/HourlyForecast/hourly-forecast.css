@@ -3,8 +3,6 @@
   border-radius: var(--radius-lg);
   display: flex;
   flex-direction: column;
-  background-color: var(--neutral-700);
-  border: 1px solid var(--neutral-600);
   padding-top: 1rem;
   justify-content: space-between;
 }
@@ -34,7 +32,7 @@
   border-radius: 10px;
 }
 
-.hourly-forecast .glass-card {
+.hourly-grid .glass-card {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -44,9 +42,9 @@
 }
 
 .hourly-card-left {
-    display: flex;
-    gap: 0.2rem;
-    align-items: center;
+  display: flex;
+  gap: 0.2rem;
+  align-items: center;
 }
 
 .hourly-forecast img {
@@ -54,7 +52,9 @@
   height: 40px;
 }
 
-
-@media (max-width: 768px) {
-
+@media (prefers-color-scheme: light) {
+  .hourly-grid .glass-card {
+    background-color: var(--neutral-800);
+    border: 1px solid var(--neutral-600);
+  }
 }

@@ -8,18 +8,22 @@
 }
 
 :root {
-  --neutral-900: hsl(243, 96%, 9%);
-  --neutral-800: hsl(243, 27%, 20%);
-  --neutral-700: hsl(243, 23%, 24%);
-  --neutral-600: hsl(243, 23%, 30%);
-  --neutral-500: hsl(243, 22%, 33%);
-  --neutral-400: hsl(240, 9%, 44%);
-  --neutral-300: hsl(240, 6%, 70%);
-  --neutral-200: hsl(250, 6%, 84%);
-  --neutral-0: hsl(0, 0%, 100%);
-  --orange-500: hsl(28, 100%, 52%);
-  --blue-500: hsl(233, 67%, 56%);
-  --blue-700: hsl(248, 70%, 36%);
+  --neutral-900: hsl(229, 88%, 86%); /* background */
+  --neutral-800:   hsl(240, 70%, 92%); /* unused */
+  --neutral-700: hsl(229, 82%, 89%); /* glass, dropdown buttons */
+  --neutral-600: hsl(240, 17%, 92%);
+
+  --neutral-500: hsl(240, 8%, 60%);
+  --neutral-400: hsl(240, 10%, 85%);
+  --neutral-300: hsl(240, 12%, 30%);
+  --neutral-200: hsl(243, 27%, 15%);
+  --neutral-0: hsl(243, 96%, 5%);
+
+  --orange-500: hsl(28, 95%, 45%);
+  --blue-500: hsl(233, 75%, 45%);
+  --blue-700: hsl(248, 80%, 30%);
+
+  --main-text: #472121;
 
   --radius-xs: 0.25rem;
   --radius-sm: 0.5rem;
@@ -76,6 +80,24 @@
   }
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --neutral-900: hsl(243, 96%, 9%);
+    --neutral-800: hsl(243, 80%, 20%);
+    --neutral-700: hsl(243, 23%, 24%);
+    --neutral-600: hsl(243, 23%, 30%);
+    --neutral-500: hsl(243, 22%, 33%);
+    --neutral-400: hsl(240, 9%, 44%);
+    --neutral-300: hsl(240, 6%, 70%);
+    --neutral-200: hsl(250, 6%, 84%);
+    --neutral-0: hsl(0, 0%, 100%);
+    --orange-500: hsl(28, 100%, 52%);
+    --blue-500: hsl(233, 67%, 56%);
+    --blue-700: hsl(248, 70%, 36%);
+    /* --main-text: #472121; */
+  }
+}
+
 :root {
   margin: 0 auto;
   text-align: center;
@@ -100,13 +122,6 @@
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+    color: var(--main-text);
   }
 }

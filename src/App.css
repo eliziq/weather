@@ -35,6 +35,12 @@ main > h1 {
   justify-self: center;
 }
 
+.glass-card {
+  background-color: var(--neutral-700);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--neutral-600);
+}
+
 @media (max-width: 768px) {
   main {
     grid-template-rows: auto;

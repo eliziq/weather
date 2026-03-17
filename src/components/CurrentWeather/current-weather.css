@@ -19,17 +19,32 @@
   justify-content: space-between;
   padding: 2rem;
 
-  background-image: url('../../assets/images/bg-today-large.svg');
-  background-size: cover;
-  background-position: center;
+  /* background-image: url('../../assets/images/bg-today-large.svg'); */
+  /* background-size: cover;
+  background-position: center; */
 
   border-radius: var(--radius-lg);
+
+  position: relative;
+  overflow: hidden;
 }
 
-.glass-card {
-  background-color: var(--neutral-700);
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--neutral-600);
+.temperature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url(/src/assets/images/bg-today-large.svg);
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+.temperature-card > * {
+  position: relative;
+  z-index: 1;
 }
 
 .current-details {
@@ -78,5 +93,15 @@ h3.current-temp {
   .temperature-card {
     aspect-ratio: 6/5;
     flex-direction: column;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .temperature-card::before {
+    filter: hue-rotate(319deg) brightness(1.5) opacity(0.6);
+  }
+
+  .temperature-card{
+    color: white;
   }
 }
