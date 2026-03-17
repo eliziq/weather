@@ -10,10 +10,12 @@ export const useWeather = () => {
 
   const unitParams = getUnits();
 
-  return useQuery({
-    queryKey: ['weather', { ...location, system: currentSystem}],
+  const { data, isError, isLoading, refetch, error } = useQuery({
+    queryKey: ['weather', { ...location, system: currentSystem }],
     queryFn: () => getWeatherData(location, unitParams),
     staleTime: 30 * 60 * 1000,
     retry: 1,
   });
+
+  return { data, isError, isLoading, refetch, error };
 };

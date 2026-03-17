@@ -1,32 +1,27 @@
 import './App.css';
 import { useEffect } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import { ErrorPage } from './pages/error.page';
 import { getUsersLocation } from './utils/getUsersLocation';
-import { CurrrentWeather } from './components/CurrentWeather/CurrentWeather';
-import { DailyForecast } from './components/DailyForecast/DailyForecast';
 import { Header } from './components/Header/Header';
-import { HourlyForecast } from './components/HourlyForecast/HourlyForecast';
-import { CitySearch } from './components/CitySearch/CitySearch';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
-const queryClient = new QueryClient();
+import { WeatherPage } from './pages/weather.page';
+import { useQueryClient } from '@tanstack/react-query';
 
 function App() {
+  const queryClient = useQueryClient();
+
   useEffect(() => {
     getUsersLocation();
   }, []);
 
   return (
-    <QueryClientProvider client={queryClient}>
+    <ErrorBoundary FallbackComponent={ErrorPage} onReset={() => queryClient.resetQueries()}>
       <Header />
       <main>
-        <h1>How's the sky looking today?</h1>
-        <CitySearch />
-        <CurrrentWeather />
-        <DailyForecast />
-        <HourlyForecast />
+        <WeatherPage />
       </main>
       <footer>footer</footer>
-    </QueryClientProvider>
+    </ErrorBoundary>
   );
 }
 
