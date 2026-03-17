@@ -5,11 +5,11 @@ export const getUsersLocation = () => {
     return;
   }
 
-  const { setLocation } = useLocationStore.getState();
+  const { setFullLocation } = useLocationStore.getState();
 
   navigator.geolocation.getCurrentPosition(
     (position) => {
-      setLocation({
+      setFullLocation({
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
       });

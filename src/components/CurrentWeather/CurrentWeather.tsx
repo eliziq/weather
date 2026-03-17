@@ -1,12 +1,15 @@
 import { getWeatherIcon } from '../../utils/getWeatherIcon';
 import { CurrentDetails } from '../CurrentDetails';
 import { useWeather } from '../../hooks/useWeather';
+import useLocationStore from '../../store/location.store';
+
 import useUnitsStore from '../../store/units.store';
 
 import './current-weather.css';
 
 export const CurrrentWeather = () => {
   const { data } = useWeather();
+  const location = useLocationStore((s) => s.locationString);
   const getLabels = useUnitsStore((s) => s.getDisplayUnits);
 
   const { temp, wind, precip } = getLabels();
@@ -19,7 +22,7 @@ export const CurrrentWeather = () => {
         <>
           <div className="temperature-card">
             <div className="location-info">
-              <h3>{data?.timezone}</h3>
+              <h3>{location}</h3>
               <h5>{currentData.time.toLocaleString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}</h5>
             </div>
             <div className="weather-info">

@@ -28,11 +28,12 @@ export const CitySearch = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  const handleSelect = ({ latitude, longitude }: CityResult) => {
+  const handleSelect = ({ latitude, longitude, name, country }: CityResult) => {
     const location = { latitude, longitude };
-    const { setLocation } = useLocationStore.getState();
+    const { setLocation, setParsedLocation } = useLocationStore.getState();
     setQuery('');
     setLocation(location);
+    setParsedLocation({ city: name, country });
     setShowResults(false);
   };
 

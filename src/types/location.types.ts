@@ -3,6 +3,11 @@ export type Location = {
   longitude: number;
 };
 
+export type locationParsed = {
+  city: string;
+  country: string;
+}
+
 export interface CityResult {
   id: number;
   name: string;

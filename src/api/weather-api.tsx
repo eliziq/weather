@@ -34,7 +34,7 @@ export const getWeatherData = async (location: Location, unitParams: WeatherUnit
   const latitude = response.latitude();
   const longitude = response.longitude();
   const elevation = response.elevation();
-  const timezone = response.timezone()?.replace('Kiev', 'Kyiv');
+  const timezone = response.timezone();
   const timezoneAbbreviation = response.timezoneAbbreviation();
   const utcOffsetSeconds = response.utcOffsetSeconds();
 
