@@ -7,23 +7,28 @@
   font-family: 'DM Sans', sans-serif;
 }
 
+body {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
 :root {
-  --neutral-900: hsl(229, 88%, 86%); /* background */
-  --neutral-800:   hsl(240, 70%, 92%); /* unused */
-  --neutral-700: hsl(229, 82%, 89%); /* glass, dropdown buttons */
-  --neutral-600: hsl(240, 17%, 92%);
+  /* Dark theme */
+  --neutral-900: hsl(243, 96%, 9%);
+  --neutral-700: hsl(243, 23%, 24%);
+  --neutral-600: hsl(243, 23%, 30%);
+  --neutral-500: hsl(243, 23%, 30%);
+  --neutral-400: hsl(240, 9%, 44%);
+  --neutral-200: hsl(250, 6%, 84%);
+  --neutral-0: hsl(0, 0%, 100%);
+  --orange-500: hsl(28, 100%, 52%);
+  --blue-500: hsl(233, 67%, 56%);
 
-  --neutral-500: hsl(240, 8%, 60%);
-  --neutral-400: hsl(240, 10%, 85%);
-  --neutral-300: hsl(240, 12%, 30%);
-  --neutral-200: hsl(243, 27%, 15%);
-  --neutral-0: hsl(243, 96%, 5%);
-
-  --orange-500: hsl(28, 95%, 45%);
-  --blue-500: hsl(233, 75%, 45%);
-  --blue-700: hsl(248, 80%, 30%);
-
-  --main-text: #472121;
+  --main-text: var(--neutral-200);
+  --border-color: var(--neutral-400);
+  --glass-hover: var(--neutral-500);
+  --glass-bg: var(--neutral-700);
 
   --radius-xs: 0.25rem;
   --radius-sm: 0.5rem;
@@ -78,27 +83,7 @@
     font-size: var(--font-md);
     line-height: 1.5;
   }
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --neutral-900: hsl(243, 96%, 9%);
-    --neutral-800: hsl(243, 80%, 20%);
-    --neutral-700: hsl(243, 23%, 24%);
-    --neutral-600: hsl(243, 23%, 30%);
-    --neutral-500: hsl(243, 22%, 33%);
-    --neutral-400: hsl(240, 9%, 44%);
-    --neutral-300: hsl(240, 6%, 70%);
-    --neutral-200: hsl(250, 6%, 84%);
-    --neutral-0: hsl(0, 0%, 100%);
-    --orange-500: hsl(28, 100%, 52%);
-    --blue-500: hsl(233, 67%, 56%);
-    --blue-700: hsl(248, 70%, 36%);
-    /* --main-text: #472121; */
-  }
-}
-
-:root {
   margin: 0 auto;
   text-align: center;
   display: flex;
@@ -111,17 +96,77 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: var(--main-text);
   background-color: var(--neutral-900);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  input {
+    background-color: var(--neutral-600);
+  }
+}
+
+/* Light theme */
+
+:root.light-theme {
+  --neutral-900: hsl(229, 88%, 86%);
+  --neutral-700: hsl(229, 82%, 89%);
+  --neutral-600: hsl(240, 17%, 92%);
+  --neutral-500: hsl(229 82.5% 92%);
+  --neutral-400: hsl(240, 10%, 85%);
+  --neutral-200: hsl(243, 27%, 15%);
+  --neutral-0: hsl(243, 96%, 5%);
+
+  --orange-500: hsl(28, 95%, 45%);
+  --blue-500: hsl(233, 75%, 45%);
+
+  --main-text: #472121;
+  --border-color: var(--neutral-600);
+  --glass-hover: var(--neutral-500);
+
+  .dropdown-menu li:hover {
+    background-color: var(--neutral-600);
+  }
+
+  .temperature-card::before {
+    filter: hue-rotate(319deg) brightness(1.5) opacity(0.6);
+  }
+
+  input {
+    background-color: var(--neutral-600);
+  }
 }
 
 @media (prefers-color-scheme: light) {
-  :root {
-    color: var(--main-text);
+  :root:not(.dark-theme) {
+    --neutral-900: hsl(229, 88%, 86%); /* background  -- only used in var*/
+    --neutral-700: hsl(229, 82%, 89%); /* glass, dropdown buttons -- only used in var */
+    --neutral-600: hsl(240, 17%, 92%);
+    --neutral-500: hsl(229 82.5% 92%);
+    --neutral-400: hsl(240, 10%, 85%); /* hourly scroll thumb */
+    --neutral-200: hsl(243, 27%, 15%); /* only used in var */
+    --neutral-0: hsl(243, 96%, 5%);
+
+    --blue-500: hsl(233, 75%, 45%);
+
+    --main-text: #472121;
+    --border-color: var(--neutral-600);
+    --glass-hover: var(--neutral-600);
+    --glass-bg: var(--neutral-700);
+
+    .dropdown-menu li:hover {
+      background-color: var(--neutral-600);
+    }
+
+    .temperature-card::before {
+      filter: hue-rotate(319deg) brightness(1.5) opacity(0.6);
+    }
+
+    input {
+      background-color: var(--neutral-600);
+    }
   }
 }

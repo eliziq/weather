@@ -19,14 +19,11 @@
   justify-content: space-between;
   padding: 2rem;
 
-  /* background-image: url('../../assets/images/bg-today-large.svg'); */
-  /* background-size: cover;
-  background-position: center; */
-
   border-radius: var(--radius-lg);
 
   position: relative;
   overflow: hidden;
+  color: hsl(240, 17%, 92%);
 }
 
 .temperature-card::before {
@@ -93,15 +90,5 @@ h3.current-temp {
   .temperature-card {
     aspect-ratio: 6/5;
     flex-direction: column;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .temperature-card::before {
-    filter: hue-rotate(319deg) brightness(1.5) opacity(0.6);
-  }
-
-  .temperature-card{
-    color: white;
   }
 }

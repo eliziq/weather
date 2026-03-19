@@ -37,8 +37,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.2rem 1rem;
-  background-color: var(--neutral-600);
-  border: 0.5px solid var(--neutral-400);
+  background-color: var(--neutral-500);
 }
 
 .hourly-card-left {
@@ -50,11 +49,4 @@
 .hourly-forecast img {
   width: 40px;
   height: 40px;
-}
-
-@media (prefers-color-scheme: light) {
-  .hourly-grid .glass-card {
-    background-color: var(--neutral-800);
-    border: 1px solid var(--neutral-600);
-  }
 }

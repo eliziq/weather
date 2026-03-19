@@ -36,9 +36,9 @@ main > h1 {
 }
 
 .glass-card {
-  background-color: var(--neutral-700);
+  background-color: var(--glass-bg);
   border-radius: var(--radius-sm);
-  border: 1px solid var(--neutral-600);
+  border: 1px solid var(--border-color);
 }
 
 @media (max-width: 768px) {
