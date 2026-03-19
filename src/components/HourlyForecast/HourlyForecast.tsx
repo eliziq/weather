@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { getWeatherIcon } from '../../utils/getWeatherIcon';
 import { useWeather } from '../../hooks/useWeather';
 import { Dropdown } from '../shared/Dropdown/Dropdown';
+import { Skeleton } from '../shared/Dropdown/Skeleton/Skeleton';
 
 import './hourly-forecast.css';
 
@@ -10,12 +11,12 @@ const WEEK_DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frid
 export const HourlyForecast = () => {
   const [dayOffset, setDayOffset] = useState(0);
 
-  const { data } = useWeather();
+  const { data, isLoading } = useWeather();
 
   const hourlyData = data?.hourly;
 
-  if (!hourlyData) {
-    return <div>Loading...</div>;
+  if (!hourlyData || isLoading) {
+    return <Skeleton />;
   }
 
   const todayIndex = hourlyData.time[0].getDay();

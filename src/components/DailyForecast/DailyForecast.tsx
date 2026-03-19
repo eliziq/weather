@@ -1,27 +1,31 @@
 import { getWeatherIcon } from '../../utils/getWeatherIcon';
 import { useWeather } from '../../hooks/useWeather';
+import { Skeleton } from '../shared/Dropdown/Skeleton/Skeleton';
 
 import './daily-forecast.css';
 
 export const DailyForecast = () => {
-   const { data } = useWeather();
+  const { data, isLoading } = useWeather();
 
   const dailyData = data?.daily;
+
+  if (!dailyData || isLoading) {
+    return <Skeleton />;
+  }
 
   return (
     <div className="daily-forecast">
       <h4>Daily forecast</h4>
       <div className="daily-grid">
-        {dailyData &&
-          dailyData.time.map((time, index) => (
-            <DailyCard
-              key={index}
-              date={time}
-              maxTemp={dailyData.temperature_2m_max?.[index]}
-              minTemp={dailyData.temperature_2m_min?.[index]}
-              weatherCode={dailyData.weather_code?.[index]}
-            />
-          ))}
+        {dailyData.time.map((time, index) => (
+          <DailyCard
+            key={index}
+            date={time}
+            maxTemp={dailyData.temperature_2m_max?.[index]}
+            minTemp={dailyData.temperature_2m_min?.[index]}
+            weatherCode={dailyData.weather_code?.[index]}
+          />
+        ))}
       </div>
     </div>
   );
