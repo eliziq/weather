@@ -1,0 +1,33 @@
+.footer {
+  height: 10vh;
+  background-color: var(--neutral-800);
+  border-top: 1px solid var(--neutral-700);
+  color: var(--neutral-400);
+  font-size: var(--font-xs);
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  height: 100%;
+}
+
+.footer-links a {
+  margin-left: 1.5rem;
+  color: var(--blue-500);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--orange-500);
+}
+
+.footer-section p {
+  margin: 0;
+  font-size: var(--font-xs);
+}

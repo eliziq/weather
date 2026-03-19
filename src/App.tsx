@@ -6,6 +6,7 @@ import { getUsersLocation } from './utils/getUsersLocation';
 import { Header } from './components/Header/Header';
 import { WeatherPage } from './pages/weather.page';
 import { useQueryClient } from '@tanstack/react-query';
+import { Footer } from './components/Footer/Footer';
 
 function App() {
   const queryClient = useQueryClient();
@@ -20,7 +21,7 @@ function App() {
       <main>
         <WeatherPage />
       </main>
-      <footer>footer</footer>
+      <Footer />
     </ErrorBoundary>
   );
 }
