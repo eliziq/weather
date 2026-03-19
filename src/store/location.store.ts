@@ -2,11 +2,6 @@ import { create } from 'zustand';
 import type { Location, locationParsed } from '../types/location.types';
 import { getCityFromCoords } from '../api/location-api';
 
-const KYIV_LOCATION: Location = {
-  latitude: 50.4501,
-  longitude: 30.5234,
-};
-
 const BERLIN_LOCATION: Location = {
   latitude: 52.5244,
   longitude: 13.4105,
