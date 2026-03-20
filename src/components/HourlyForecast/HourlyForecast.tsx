@@ -60,14 +60,14 @@ interface HourlyCardProps {
 }
 
 const HourlyCard = ({ date, temperature, weatherCode }: HourlyCardProps) => {
-  temperature = Math.round(temperature!);
+  temperature = temperature ? Math.round(temperature) : undefined;
   return (
     <div className="glass-card">
       <div className="hourly-card-left">
-        <img src={getWeatherIcon(weatherCode!)} alt="" />
+        {weatherCode !== undefined ? <img src={getWeatherIcon(weatherCode)} alt="" /> : ''}
         <h5>{date.getHours()}:00</h5>
       </div>
-      <h5>{temperature}°</h5>
+      <h5>{temperature !== undefined ? `${temperature}°` : '--'}</h5>
     </div>
   );
 };

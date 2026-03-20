@@ -47,46 +47,51 @@ export const getWeatherData = async (location: Location, unitParams: WeatherUnit
 
   // Attributes for timezone and location
 
-  const current = response.current()!;
-  const hourly = response.hourly()!;
-  const daily = response.daily()!;
+  const current = response.current();
+  const hourly = response.hourly();
+  const daily = response.daily();
 
-  const start = Number(hourly.time());
-  const end = Number(hourly.timeEnd());
-  const interval = hourly.interval();
+  const start = Number(hourly?.time() ?? 0);
+  const end = Number(hourly?.timeEnd() ?? 0);
+  const hourlyInterval = hourly?.interval() || 3600;
+  const dailyInterval = daily?.interval() || 86400;
 
-  const hours = Math.round((end - start) / interval);
+  const hours = hourlyInterval > 0 ? Math.round((end - start) / hourlyInterval) : 0;
+
+  const getVarValue = (source: any, index: number) => {
+    return source?.variables(index)?.value() ?? 0;
+  };
 
   // Note: The order of weather variables in the URL query and the indices below need to match!
   const weatherData = {
     current: {
-      time: new Date(Number(current.time()) * 1000),
-      temperature_2m: Math.round(current.variables(0)!.value()),
-      relative_humidity_2m: Math.round(current.variables(1)!.value()),
-      is_day: current.variables(2)!.value(),
-      apparent_temperature: Math.round(current.variables(3)!.value()),
-      wind_speed_10m: Math.round(current.variables(4)!.value()),
-      wind_direction_10m: current.variables(5)!.value(),
-      rain: current.variables(6)!.value(),
-      showers: current.variables(7)!.value(),
-      snowfall: current.variables(8)!.value(),
-      cloud_cover: current.variables(9)!.value(),
-      weather_code: current.variables(10)!.value(),
-      precipitation: Math.round(current.variables(11)!.value() * 10) / 10,
+      time: current ? new Date(Number(current.time()) * 1000) : new Date(),
+      temperature_2m: Math.round(Math.round(getVarValue(current, 0))),
+      relative_humidity_2m: Math.round(Math.round(getVarValue(current, 1))),
+      is_day: getVarValue(current, 2),
+      apparent_temperature: Math.round(getVarValue(current, 3)),
+      wind_speed_10m: Math.round(getVarValue(current, 4)),
+      wind_direction_10m: getVarValue(current, 5),
+      rain: getVarValue(current, 6),
+      showers: getVarValue(current, 7),
+      snowfall: getVarValue(current, 8),
+      cloud_cover: getVarValue(current, 9),
+      weather_code: getVarValue(current, 10),
+      precipitation: Math.round(getVarValue(current, 11) * 10) / 10,
     },
     hourly: {
-      time: Array.from({ length: hours + 1 }, (_, i) => new Date((start + i * interval) * 1000)),
-      temperature_2m: hourly.variables(0)!.valuesArray(),
-      weather_code: hourly.variables(1)!.valuesArray(),
+      time: Array.from({ length: hours + 1 }, (_, i) => new Date((start + i * hourlyInterval) * 1000)),
+      temperature_2m: hourly?.variables(0)!.valuesArray(),
+      weather_code: hourly?.variables(1)!.valuesArray(),
     },
     daily: {
       time: Array.from(
-        { length: (Number(daily.timeEnd()) - Number(daily.time())) / daily.interval() },
-        (_, i) => new Date((Number(daily.time()) + i * daily.interval()) * 1000)
+        { length: daily ? (Number(daily.timeEnd()) - Number(daily.time())) / dailyInterval : 0 },
+        (_, i) => new Date((Number(daily?.time() ?? 0) + i * dailyInterval) * 1000)
       ),
-      weather_code: daily.variables(0)!.valuesArray(),
-      temperature_2m_max: daily.variables(1)!.valuesArray(),
-      temperature_2m_min: daily.variables(2)!.valuesArray(),
+      weather_code: daily?.variables(0)!.valuesArray(),
+      temperature_2m_max: daily?.variables(1)!.valuesArray(),
+      temperature_2m_min: daily?.variables(2)!.valuesArray(),
     },
     timezone,
   };

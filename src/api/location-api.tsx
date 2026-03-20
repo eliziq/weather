@@ -20,6 +20,9 @@ export const getCityFromCoords = async (lat: number, lon: number) => {
 
   const response = await fetch(url);
   const data = await response.json();
+
+  if (!data.address) return { city: 'Unknown', country: 'Unknown' };
+
   const location = {
     city: data.address.city || data.address.town || data.address.village || 'Unknown',
     country: data.address.country || 'Unknown',

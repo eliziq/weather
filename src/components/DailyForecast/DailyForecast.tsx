@@ -42,10 +42,13 @@ const DailyCard = ({ date, maxTemp, minTemp, weatherCode }: DailyDataProps) => {
   const day = date.toLocaleDateString('en-US', { weekday: 'short' });
   maxTemp = Math.round(maxTemp!);
   minTemp = Math.round(minTemp!);
+
+  const iconSource = weatherCode !== undefined && weatherCode !== null && getWeatherIcon(weatherCode);
+
   return (
     <div className="glass-card">
       <h4>{day}</h4>
-      <img className="weather-icon-daily" src={getWeatherIcon(weatherCode!)} alt="weather icon" />
+      {iconSource ? <img className="weather-icon-daily" src={iconSource} alt="weather icon" /> : ''}
       <div className="daily-temp">
         <h5>{maxTemp}°</h5>
         <h5>{minTemp}°</h5>
