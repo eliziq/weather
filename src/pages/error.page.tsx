@@ -6,7 +6,7 @@ export const ErrorPage = ({ error, resetErrorBoundary }: FallbackProps) => {
     <>
       <h1>Something went wrong</h1>
       <h4>{errorMessage}</h4>
-      <button onClick={resetErrorBoundary} className="retry-button">
+      <button type="button" onClick={resetErrorBoundary} className="retry-button">
         Retry
       </button>
     </>

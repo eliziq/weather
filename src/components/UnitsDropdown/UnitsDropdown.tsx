@@ -43,16 +43,16 @@ export const UnitsDropdown = () => {
 
   return (
     <div ref={dropdownRef} className="dropdown-container ">
-      <button onClick={() => setIsOpen(!isOpen)} className="dropdown-button">
+      <button type="button" onClick={() => setIsOpen(!isOpen)} className="dropdown-button">
         <img className="dropdown-icon" src={unitsIcon} alt="" />
-        <h5>Units</h5>
+        Units
         <img className="dropdown-icon" src={icon} alt="" />
       </button>
 
       {isOpen && (
         <div className="dropdown-menu units-dropdown">
           <div className="units-header">
-            <button onClick={toggleSystem} className="toggle-button">
+            <button type="button" aria-expanded={isOpen} onClick={toggleSystem} className="toggle-button">
               Switch to {currentSystem === UNIT_SYSTEMS.METRIC ? 'Imperial' : 'Metric'}
             </button>
           </div>

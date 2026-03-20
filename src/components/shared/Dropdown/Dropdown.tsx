@@ -39,7 +39,7 @@ export const Dropdown = ({ id, title = 'Select', data, selectedId, onSelect }: D
         type="button"
         onClick={() => setIsOpen(!isOpen)}
         className="dropdown-button">
-        <h5>{selectedItem?.label || title}</h5>
+        {selectedItem?.label || title}
         <img className="dropdown-icon" src={icon} alt="Dropdown icon" />
       </button>
 

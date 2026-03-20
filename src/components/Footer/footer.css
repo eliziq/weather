@@ -18,7 +18,6 @@
 .footer a {
   margin-left: 1.5rem;
   color: var(--blue-500);
-  text-decoration: none;
   transition: color 0.2s;
 }
 

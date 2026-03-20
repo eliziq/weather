@@ -10,7 +10,7 @@ export const CitySearch = () => {
   const [query, setQuery] = useState('');
   const [showResults, setShowResults] = useState<boolean>(false);
 
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLFormElement>(null);
 
   const debouncedQuery = useDebounce(query, 300);
 
@@ -50,9 +50,10 @@ export const CitySearch = () => {
   };
 
   return (
-    <div ref={dropdownRef} className="search-bar">
+    <form ref={dropdownRef} className="search-bar">
       <div className="input-container">
         <input
+          id="search"
           type="text"
           value={query}
           onFocus={handleFocus}
@@ -67,12 +68,11 @@ export const CitySearch = () => {
               </li>
             ))}
             {isError || results?.length === 0 ? <li>City not found</li> : ''}
+            {isLoading ? <li>Searching...</li> : ''}
           </ul>
         )}
       </div>
-      <button>Search</button>
-
-      {isLoading && <div className="loader">Searching...</div>}
-    </div>
+      <button type="submit">Search</button>
+    </form>
   );
 };

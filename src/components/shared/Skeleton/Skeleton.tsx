@@ -1,5 +1,5 @@
 import './skeleton.css';
 
 export const Skeleton = () => {
-  return <div className="skeleton-pulse"></div>;
+  return <div aria-hidden="true" className="skeleton-pulse"></div>;
 };

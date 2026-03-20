@@ -22,7 +22,7 @@ export const ThemeToggle = () => {
   };
 
   return (
-    <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle dark mode">
+    <button type="button" onClick={toggleTheme} className="theme-toggle" aria-label="Toggle dark mode">
       {isLight ? <img src={IconLight} alt="Light mode" /> : <img src={IconDark} alt="Dark mode" />}
     </button>
   );

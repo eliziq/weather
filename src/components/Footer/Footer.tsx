@@ -7,7 +7,11 @@ export const Footer = () => {
         <div className="footer-section">
           <p>
             Weather data by{' '}
-            <a rel="noopener noreferrer" href="https://open-meteo.com/" target="_blank">
+            <a
+              rel="noopener noreferrer"
+              aria-label="open Open-Meteo in a new tab"
+              href="https://open-meteo.com/"
+              target="_blank">
               Open-Meteo
             </a>
           </p>
@@ -18,10 +22,18 @@ export const Footer = () => {
         </div>
 
         <div className="footer-links">
-          <a rel="noopener noreferrer" href="https://github.com/eliziq/weather" target="_blank">
+          <a
+            rel="noopener noreferrer"
+            aria-label="open GitHub in a new tab"
+            href="https://github.com/eliziq/weather"
+            target="_blank">
             GitHub
           </a>
-          <a rel="noopener noreferrer" href="https://linkedin.com/in/yelizavieta-parkhomets-288a8a166" target="_blank">
+          <a
+            rel="noopener noreferrer"
+            aria-label="open LinkedIn in a new tab"
+            href="https://linkedin.com/in/yelizavieta-parkhomets-288a8a166"
+            target="_blank">
             LinkedIn
           </a>
         </div>

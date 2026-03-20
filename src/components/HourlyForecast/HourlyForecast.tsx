@@ -30,7 +30,7 @@ export const HourlyForecast = () => {
   }));
 
   return (
-    <div className="hourly-forecast glass-card">
+    <div className="hourly-forecast glass-card" tabIndex={0} role="region" aria-label="Hourly weather forecast">
       <div className="hourly-header">
         <h4>Hourly Forecast </h4>
         <DayDropdown days={rotatedDays} dayOffset={dayOffset} setDayOffset={setDayOffset} />
