@@ -8,7 +8,7 @@
   background-color: var(--neutral-500);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-sm);
-  color: var(--text-main);
+  color: var(--main-text);
   padding: 12px;
   font-size: 1rem;
   cursor: pointer;

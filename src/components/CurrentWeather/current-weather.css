@@ -75,7 +75,7 @@ h3.current-temp {
   font-weight: 600;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48em) {
   .current-weather {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto 1fr 1fr;
@@ -86,7 +86,7 @@ h3.current-temp {
   }
 }
 
-@media (max-width: 412px) {
+@media (max-width: 26em) {
   .temperature-card {
     aspect-ratio: 6/5;
     flex-direction: column;

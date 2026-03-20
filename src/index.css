@@ -88,7 +88,7 @@ body {
   text-align: center;
   display: flex;
   flex-direction: column;
-  width: 100vw;
+  width: 100%;
   overflow-y: scroll;
 
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -127,10 +127,6 @@ body {
   --border-color: var(--neutral-600);
   --glass-hover: var(--neutral-500);
 
-  .dropdown-menu li:hover {
-    background-color: var(--neutral-600);
-  }
-
   .temperature-card::before {
     filter: hue-rotate(319deg) brightness(1.5) opacity(0.6);
   }
@@ -156,10 +152,6 @@ body {
     --border-color: var(--neutral-600);
     --glass-hover: var(--neutral-600);
     --glass-bg: var(--neutral-700);
-
-    .dropdown-menu li:hover {
-      background-color: var(--neutral-600);
-    }
 
     .temperature-card::before {
       filter: hue-rotate(319deg) brightness(1.5) opacity(0.6);

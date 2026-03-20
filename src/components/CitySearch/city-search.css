@@ -2,7 +2,6 @@
   grid-area: search;
   display: grid;
   grid-template-columns: 2fr 1fr;
-  height: 100%;
   gap: 1rem;
   min-height: 50px;
   height: 7vh;
@@ -61,7 +60,7 @@
     border: 0.5px solid var(--border-color);
     background-color: var(--glass-hover);
   }
-  text-align: left;
+  text-align: start;
   font-size: var(--font-sm);
 }
 
@@ -76,7 +75,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48em) {
   .search-bar {
     grid-template-columns: 1fr auto;
 
@@ -93,7 +92,7 @@
   }
 }
 
-@media (max-width: 415px) {
+@media (max-width: 26em) {
   .search-bar {
     grid-template-columns: auto;
     min-height: fit-content;

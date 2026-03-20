@@ -9,11 +9,12 @@
   background-color: var(--glass-bg);
   border-radius: var(--radius-sm);
   border: 1px solid var(--border-color);
-  padding: 0.3rem 0.5rem;
+  padding: 0.3rem 0.7rem;
   width: 100%;
   gap: 0.7rem;
   cursor: pointer;
-  color: var(--text-main);
+  color: var(--main-text);
+  font-size: var(--font-xs);
 }
 
 .dropdown-button img.dropdown-icon {

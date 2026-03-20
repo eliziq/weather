@@ -41,7 +41,7 @@ main > h1 {
   border: 1px solid var(--border-color);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48em) { /* 768px */
   main {
     grid-template-rows: auto;
     grid-template-columns: minmax(0, 1fr);
