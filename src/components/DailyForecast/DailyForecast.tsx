@@ -1,6 +1,6 @@
 import { getWeatherIcon } from '../../utils/getWeatherIcon';
 import { useWeather } from '../../hooks/useWeather';
-import { Skeleton } from '../shared/Dropdown/Skeleton/Skeleton';
+import { Skeleton } from '../shared/Skeleton/Skeleton';
 
 import './daily-forecast.css';
 

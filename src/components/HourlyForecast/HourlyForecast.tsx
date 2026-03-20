@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { getWeatherIcon } from '../../utils/getWeatherIcon';
 import { useWeather } from '../../hooks/useWeather';
 import { Dropdown } from '../shared/Dropdown/Dropdown';
-import { Skeleton } from '../shared/Dropdown/Skeleton/Skeleton';
+import { Skeleton } from '../shared/Skeleton/Skeleton';
 
 import './hourly-forecast.css';
 

@@ -1,7 +1,7 @@
 import { getWeatherIcon } from '../../utils/getWeatherIcon';
 import { CurrentDetails } from '../CurrentDetails';
 import { useWeather } from '../../hooks/useWeather';
-import { Skeleton } from '../shared/Dropdown/Skeleton/Skeleton';
+import { Skeleton } from '../shared/Skeleton/Skeleton';
 import useLocationStore from '../../store/location.store';
 
 import useUnitsStore from '../../store/units.store';
