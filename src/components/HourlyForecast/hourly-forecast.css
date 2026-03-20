@@ -10,7 +10,9 @@
 .hourly-header {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
   padding: 0 1rem;
+  gap: 1rem;
 }
 
 .hourly-grid {
